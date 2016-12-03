@@ -1,0 +1,142 @@
+// 3er Parcial.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+#include <string>
+
+using namespace std;
+
+
+struct agenda
+{
+  string nombre;
+  string apellido;
+  string direccion;
+  int telefono;
+
+};
+void crear_agenda();
+void agregar_contacto();
+void buscar_contacto(agenda lista[],int num);
+void borrar_contacto(agenda lista[],int num);
+void ver_contacto();
+void main()
+{
+	agenda lista;
+	int op;
+	int num;
+	do{
+		cout<<"***** M E N U *****"<<endl;
+	   cout<<"1.-Agregar contacto"<<endl;
+	   cout<<"2.-ver contacto"<<endl;
+       cout<<" 3.-buscar contacto"<<endl;
+	   cout<<"4.-Borrar contacto"<<endl;
+	   cout<<"5.-salir"<<endl;
+	   cout<<"elija la opcion que desee"<<endl;
+	   cin>>op;
+	   switch(op)
+	   {
+   
+	       case 1: 
+			     agregar_contacto();
+					break;
+			case 2: 
+				buscar_contacto();
+					break;
+			case 3: 
+				borrar_contacto();
+					break;
+			case 4: 
+				ver_contacto();
+					break;
+		}
+	} while(op != 0);
+	getch();
+}
+
+void crear_agenda()
+{
+	FILE *ptr;
+	ptr=fopen("genda.dat","wb");
+	 fclose(ptr);
+}
+void agregar_contacto()
+{
+   FILE *ptr;
+   agenda lista;
+   int num;
+   ptr=fopen("agenda.dat","ab");
+   
+       cout<<" cual es su nombre : ";
+	   getline(cin, lista.nombre);
+	
+	   cout<<"cual es su apellido : ";
+       getline(cin, lista.apellido);
+	
+	
+	  cout<<"cual es su direccion : ";
+      getline(cin, lista.direccion);
+	
+	  cout<<"cual es su telefono :";
+	  cin>> lista.telefono;
+	
+	  fwrite(&lista,sizeof(lista),1,ptr);
+	  fclose(ptr);
+
+}
+ void buscar_contacto(agenda lista[],int num)
+{
+	int cont,i;  
+	FILE *ptr;
+	agenda lista;
+	ptr = fopen("agenda.dat","wb");
+	cout<<"Que contacto desea buscar: "<<endl;
+	cin>>cont;
+	 if(ptr!=NULL)
+	 {
+		 fread(&lista, sizeof(lista),1,ptr);
+		 i++;
+		 while(!feof(ptr))
+		 {
+			 if(lista.nombre==(i=cont-1))
+			 {
+		
+		        fread(&lista,sizeof(lista),1,ptr);
+			    i++;
+			 {
+		 }
+	
+
+	 }
+	
+	fclose(ptr);
+	
+ }
+
+ void borrar_contacto(agenda lista[],int num);
+ {
+	 FILE *ptr;
+	agenda lista;
+	int elim, i;
+	ptr = fopen("agenda.dat","r+b");
+	cout<<"que contacto desea buscar: "<<endl;
+	cin>>elim;
+	if(ptr!=NULL)
+	{
+		fread(&lista, sizeof(lista),1,ptr);
+		i++;
+		while(!feof(ptr))
+		{
+			if(lista.nombre=(i=elim-1))
+				{
+					fread(&lista, sizeof(lista),1,ptr);
+			    }
+			fread(&lista, sizeof(lista),1,ptr);
+			i++;
+		}
+	}
+	fclose(ptr);
+ }
